@@ -4,6 +4,9 @@ from storages.backends.s3boto3 import S3Boto3Storage
 # Create your models here.
 #Genre model
 class Genre(models.Model):
+    """
+    Genre for a movie: Terror, Acción, etc
+    """
     genre_name = models.CharField(max_length=50, blank=False, null=False)
     
     def __str__(self):
@@ -33,8 +36,12 @@ class Movie(models.Model):
    
 #Classifies model    
 class Classifies(models.Model):
-    movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='classifications')
-    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name='classifications')
+    """
+    Movie and Genre many to many, for movies classified on most than one genre, ej:  
+    Los vengadores: Acción, Ciencia ficción
+    """
+    movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='classifications_movie')
+    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name='classifications_genre')
     
     def __str__(self):
         return f"Movie name: {self.movie_id.movie_name} Genre name: {self.genre_id.genre_name}"
@@ -48,6 +55,9 @@ class City(models.Model):
     
 #Cinema model
 class Cinema(models.Model):
+    """
+    Cinema ej: CineColombia-Chipichape - Calle 38 Norte # 6N-45 - Cali - 30 sillas totales
+    """
     cinema_name = models.CharField(max_length=100, blank=False, null=False)
     address = models.CharField(max_length=200, blank=False, null=False)
     total_seats = models.IntegerField(blank=False, null=False)
@@ -58,6 +68,9 @@ class Cinema(models.Model):
 
 #movie show model
 class MovieShow(models.Model):
+    """
+    Movie show ej: Avatar - 20-01-2026 h:20:00 - CineColombia-Chipichape - 20 sillas disponibles 
+    """
     show_date = models.DateTimeField(blank=False, null=False)
     available_seats = models.IntegerField(blank=False, null=False)
     movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='movie_shows')

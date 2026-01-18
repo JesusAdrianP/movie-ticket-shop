@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
 from .serializers import *
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import MovieFilter
 
 # Create your views here.
 
@@ -13,4 +15,7 @@ class MovieListView(generics.ListAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
     permission_classes = [permissions.AllowAny]
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = MovieFilter
+    
 
