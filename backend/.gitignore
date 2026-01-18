@@ -1,0 +1,48 @@
+# =======================
+# Python / Django
+# =======================
+
+# Archivos compilados de Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Entornos virtuales
+venv/
+ENV/
+env/
+
+# Bases de datos locales
+*.sqlite3
+db.sqlite3
+
+# Logs
+*.log
+
+# Archivos temporales de Django
+*.pot
+*.mo
+
+# Archivos de migraciones compiladas (opcional)
+*/migrations/*.pyc
+*/migrations/__pycache__/
+
+# Archivos de usuario / editor
+*.swp
+*.DS_Store
+.idea/
+.vscode/
+
+# Archivos de distribución
+*.egg-info/
+dist/
+build/
+*.zip
+*.tar.gz
+
+# Archivos de medios y estáticos generados
+staticfiles/
+media/
+
+# Variables de entorno
+.env
