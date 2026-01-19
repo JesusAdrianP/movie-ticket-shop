@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 export default function MovieCard({ movie }) {
+    const navigate = useNavigate();
+
     return (
-        <div style={{ border: "1px solid #add", padding: "1rem"}}>
+        <div 
+          onClick={() => navigate(`/movies/${movie.id}`)}
+          style={{ cursor:"pointer", border: "1px solid #add", padding: "1rem"}}>
             <img 
               src={movie.movie_poster} 
               alt={movie.movie_name}
