@@ -62,6 +62,7 @@ class MovieSerializer(serializers.ModelSerializer):
     """
     Serializer for Movie model
     """
+    genres = GenreSerialzer(many=True, read_only=True)
     class Meta:
         model = Movie
         fields = '__all__'
@@ -76,12 +77,8 @@ class MovieShowSerializer(serializers.ModelSerializer):
     """
     Serializer for movieshow model
     """
+    cinema_id = CinemaSerializer(read_only=True)
     class Meta:
         model = MovieShow
         fields = '__all__'
         read_only_fields = ['id']
-    
-    def create(self, validated_data):
-        movieshow = MovieShow.objects.create(**validated_data)
-        movieshow.save()
-        return movieshow

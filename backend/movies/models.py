@@ -30,6 +30,7 @@ class Movie(models.Model):
     rating = models.CharField(max_length=4, choices=RATING_CHOICES, blank=False, null=False)
     is_active = models.BooleanField(default=True)
     movie_poster = models.ImageField(upload_to='images/', storage=S3Boto3Storage)
+    genres = models.ManyToManyField(Genre, through='Classifies', related_name='movies', help_text="Genres to which the movie belongs")
     
     def __str__(self):
         return f"Movie name: {self.movie_name}"
@@ -66,16 +67,29 @@ class Cinema(models.Model):
     def __str__(self):
         return f"Cinema name: {self.cinema_name} City name: {self.city_id.city_name}"
 
+class CinemaRoom(models.Model):
+    """
+    Room cinema model ej: CineColombia-Chipichape - Sala 3 - Filas: [A,B,C] 
+    - 10 sillas por fila -> A1,A2,..., A10, B1,...,B10 
+    """
+    cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE, related_name='cinema')
+    room_name = models.CharField(max_length=50, blank=False, null=False)
+    rows = models.JSONField()
+    seats_per_row = models.PositiveBigIntegerField()
+    
+    def __str__(self):
+        return f"{self.room_name} - {self.cinema.cinema_name}"
+
 #movie show model
 class MovieShow(models.Model):
     """
     Movie show ej: Avatar - 20-01-2026 h:20:00 - CineColombia-Chipichape - 20 sillas disponibles 
     """
     show_date = models.DateTimeField(blank=False, null=False)
-    available_seats = models.IntegerField(blank=False, null=False)
+    price = models.DecimalField(max_digits=10, decimal_places=2,blank=False, null=False, default=0)
     movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='movie_shows')
-    cinema_id = models.ForeignKey(Cinema, on_delete=models.CASCADE, related_name='movie_shows')
+    room = models.ForeignKey(CinemaRoom, on_delete=models.CASCADE, related_name='rooms', default=None)
     
     def __str__(self):
-        return f"Movie name: {self.movie_id.movie_name} cinema name: {self.cinema_id.cinema_name}"
+        return f"Movie name: {self.movie_id.movie_name} - cinema name: {self.room.cinema.cinema_name}"
     

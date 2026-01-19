@@ -1,5 +1,5 @@
 from django_filters import rest_framework as filters
-from .models import Movie
+from .models import Movie, MovieShow
 
 class MovieFilter(filters.FilterSet):
     """
@@ -24,3 +24,16 @@ class MovieFilter(filters.FilterSet):
             'rating',
             'genre'
         ]
+
+class MovieShowFilter(filters.FilterSet):
+    """
+    Advanced filter for Movies shows with support for JSON field filtering.
+
+    Available filters:
+    - city: Exact match 
+    """
+    city = filters.CharFilter(field_name='cinema_id__city_id', lookup_expr='exact')
+    
+    class Meta:
+        model = MovieShow
+        fields = []
