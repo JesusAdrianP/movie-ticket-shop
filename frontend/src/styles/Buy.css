@@ -1,0 +1,79 @@
+.buy-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 24px;
+}
+
+.buy-container h2 {
+    margin-bottom: 20px;
+}
+
+.buy-section {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.buy-section h3 {
+    margin-bottom: 12px;
+}
+
+/* Asientos */
+.seat-info {
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+.total {
+    margin-top: 8px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Pago */
+.payment-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.payment-group label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.payment-group input,
+.payment-group select {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.payment-group input:focus,
+.payment-group select:focus {
+    outline: none;
+    border-color: #6c63ff;
+}
+
+/* Botón */
+.confirm-btn {
+    margin-top: 20px;
+    padding: 14px;
+    background: #6c63ff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.confirm-btn:hover {
+    background: #554fd8;
+}
+
+.confirm-btn:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}

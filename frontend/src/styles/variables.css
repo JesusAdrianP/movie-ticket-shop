@@ -1,0 +1,10 @@
+:root {
+  --primary: #3498db;
+  --success: #2ecc71;
+  --background: #f4f6f8;
+  --text: #2c3e50;
+  --muted: #7f8c8d;
+
+  --radius: 12px;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}

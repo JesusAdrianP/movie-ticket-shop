@@ -1,0 +1,41 @@
+.movies-container {
+    padding: 2rem;
+}
+
+.movies-search {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.movies-search input {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    border: 1px solid #374151;
+    background-color: #111827;
+    color: #f9fafb;
+    font-size: 1rem;
+}
+
+.movies-search input::placeholder {
+    color: #9ca3af;
+}
+
+.movies-search input:focus {
+    outline: none;
+    border-color: #facc15;
+}
+
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.no-results {
+    text-align: center;
+    margin-top: 2rem;
+    color: #9ca3af;
+}

@@ -1,0 +1,30 @@
+.movie-card {
+    cursor: pointer;
+    background-color: #1f2933;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+}
+
+.movie-card__image {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.movie-card__content {
+    padding: 0.8rem;
+}
+
+.movie-card__content h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #f9fafb;
+    text-align: center;
+}

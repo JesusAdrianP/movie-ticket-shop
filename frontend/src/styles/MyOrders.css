@@ -1,0 +1,90 @@
+.orders-container {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+.orders-title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Estados */
+.orders-loading,
+.orders-empty {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 1.1rem;
+}
+
+/* Card */
+.order-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+/* Estado */
+.order-status {
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Estados posibles */
+.order-status.completed {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.order-status.pending {
+    background-color: #fff8e1;
+    color: #f9a825;
+}
+
+.order-status.cancelled {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* Texto */
+.order-card p {
+    margin: 0.3rem 0;
+}
+
+/* Asientos */
+.seat-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5rem;
+}
+
+.seat-list li {
+    display: inline-block;
+    margin: 0.25rem;
+    padding: 0.35rem 0.6rem;
+    background-color: #f0f0f0;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
