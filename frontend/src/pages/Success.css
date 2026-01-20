@@ -1,0 +1,29 @@
+.success-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.success-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  max-width: 420px;
+}
+
+.success-title {
+  color: var(--success);
+  margin-bottom: 1rem;
+}
+
+.success-text {
+  margin-bottom: 1rem;
+}
+
+.success-order {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}

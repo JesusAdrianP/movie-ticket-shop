@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getMovieById, getMovieShows, getCities } from "../services/movieService";
 import { useAuth } from "../context/AuthContext";
-import { parseISO } from "date-fns";
-import { formatInTimeZone } from "date-fns-tz";
-import { es } from "date-fns/locale";
+import { formatReadableDate } from "../utils/date";
+import "./MovieDetail.css";
 
 export default function MovieDetail() {
     const { tokens } = useAuth()
@@ -49,50 +48,57 @@ export default function MovieDetail() {
           .finally(() => setLoading(false))
     }, [selectedCity, id])
 
-    if(!movie) return <p>Cargando película</p>
+    if(!movie) return <p>Cargando película...</p>
 
     return (
-        <div>
-            <img src={movie.movie_poster} alt={movie.movie_name} style={{width: "300px"}} />
+        <div className="movie-detail">
+            <img className="movie-poster" src={movie.movie_poster} alt={movie.movie_name}/>
 
-            <h1>{movie.movie_name}</h1>
-            <p>{movie.synopsis}</p>
-            <p><b>Duración: </b> {movie.length_minutes} min</p>
-            <p><b>Fecha de estreno: </b> {movie.release_date}</p>
-            <p><b>Género: </b> {movie.genres.map( genre => genre.genre_name).join(', ')}</p>
+            <div className="movie-info">
+                <h1>{movie.movie_name}</h1>
 
-            <h3>Selecciona una ciudad</h3>
-            <select 
-              value={selectedCity}
-              onChange={(e) => setSelectedCity(e.target.value)}
-            >
-                <option value="">Selecciona una ciudad</option>
-                {cities.map(city => (
-                    <option key={city.id} value={city.id}>
-                        {city.city_name}
-                    </option>
-                ))}
-            </select>
+                <div className="movie-meta">
+                    <p>{movie.synopsis}</p>
+                    <p><b>Duración: </b> {movie.length_minutes} min</p>
+                    <p><b>Fecha de estreno: </b> {formatReadableDate(movie.release_date)}</p>
+                    <p><b>Género: </b> {movie.genres.map( genre => genre.genre_name).join(', ')}</p>
+                </div>
 
-            {loading && <p>Cargando funciones...</p>}
+                <h3>Selecciona una ciudad</h3>
+                <select
+                    value={selectedCity}
+                    onChange={(e) => setSelectedCity(e.target.value)}
+                >
+                    <option value="">Selecciona una ciudad</option>
+                    {cities.map(city => (
+                        <option key={city.id} value={city.id}>
+                            {city.city_name}
+                        </option>
+                    ))}
+                </select>
 
-            {!loading && selectedCity && shows.length === 0 && (
-                <p>No hay funciones disponibles en esta ciudad</p>
-            )}
+                {loading && <p>Cargando funciones...</p>}
 
-            {!loading && shows.length > 0 && (
-                <>
-                  <h3>Funciones disponibles</h3>
-                  {shows.map(show => (
-                    <div key={show.id}>
-                        <p>
-                            {formatInTimeZone(show.show_date, "UTC", "EEEE, dd 'de' MMMM yyyy, HH:mm", {locale: es} )} | {show.cinema_id.cinema_name}
-                        </p>
-                        <button onClick={() => handleShow(show.id)}>Comprar entrada</button>
+                {!loading && selectedCity && shows.length === 0 && (
+                    <p>No hay funciones disponibles en esta ciudad</p>
+                )}
+
+                {!loading && shows.length > 0 && (
+                    <div className="show-list">
+                        {shows.map(show => (
+                            <div className="show-card" key={show.id}>
+                                <p className="show-card-text">
+                                    {formatReadableDate(show.show_date)} |{" "} 
+                                    {show.room.cinema.cinema_name}
+                                </p>
+                                <button onClick={() => handleShow(show.id)}>
+                                    Comprar entrada
+                                </button>
+                            </div>
+                        ))}
                     </div>
-                   ))}
-                </>
-            )}
+                )}
+            </div>
         </div>
-    )
+    );
 }

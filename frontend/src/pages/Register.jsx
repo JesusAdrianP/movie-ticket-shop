@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { registerUser } from "../services/authService";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
     const [email, setEmail] = useState("");
@@ -18,42 +18,57 @@ export default function Register() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Registro</h2>
+        <div className="auth-container">
+            <div className="auth-card">
+                <h1>Registro</h1>
 
-            <input 
-              placeholder="Correo electrónico"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-            />
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="email"
+                        placeholder="Correo electrónico"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        required
+                    />
+                    
+                    <input 
+                        placeholder="Número de teléfono"
+                        value={phone_number}
+                        onChange={e => setPhone(e.target.value)}
+                        required
+                    />
+                    
+                    <input 
+                        placeholder="Nombre"
+                        value={first_name}
+                        onChange={e => setFirstName(e.target.value)}
+                        required
+                    />
+                    
+                    <input 
+                        placeholder="Apellido"
+                        value={last_name}
+                        onChange={e => setLastName(e.target.value)}
+                        required
+                    />
+                    
+                    <input 
+                        type="password"
+                        placeholder="Contraseña"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        required
+                    />
+                    
+                    <button type="submit">Crear cuenta</button>
+                </form>
 
-            <input 
-              placeholder="Número de teléfono"
-              value={phone_number}
-              onChange={e => setPhone(e.target.value)}
-            />
-
-            <input 
-              placeholder="Nombre"
-              value={first_name}
-              onChange={e => setFirstName(e.target.value)}
-            />
-
-            <input 
-              placeholder="Apellido"
-              value={last_name}
-              onChange={e => setLastName(e.target.value)}
-            />
-
-            <input 
-              type="password"
-              placeholder="Contraseña"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-            />
-
-            <button>Crear cuenta</button>
-        </form>
+                <p className="auth-form-text">
+                    ¿Ya tienes una cuenta?{" "}
+                    <Link to="/login">Inicia sesión aquí</Link>
+                </p>
+            </div>
+        </div>
     )
 
 }
