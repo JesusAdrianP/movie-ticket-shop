@@ -21,6 +21,10 @@ export default function Buy() {
     const [paymentMethod, setPaymentMethod] = useState("CREDIT_CARD");
     const [cardHolderName, setCardHolderName] = useState("");
     const [cardLastFour, setCardLastFour] = useState("");
+    const [cardNumber, setCardNumber] = useState("");
+    const [expiryDate, setExpiryDate] = useState("");
+    const [cvc, setCvc] = useState("");
+
 
     useEffect(() => {
         if(!tokens?.access) {
@@ -116,10 +120,34 @@ export default function Buy() {
                     />
 
                    <input
-                        placeholder="Últimos 4 dígitos"
+                        placeholder="Número de la tarjeta"
+                        maxLength="19"
+                        value={cardNumber}
+                        onChange={e => { 
+                            const value = e.target.value.replace(/\D/g, "");
+                            setCardNumber(value);
+                            setCardLastFour(value.slice(-4));
+                        }}
+                        required
+                    />
+
+                    <input
+                        placeholder="MM/YY"
+                        maxLength="5"
+                        value={expiryDate}
+                        onChange={e => { 
+                            const value = e.target.value;
+                            
+                            setExpiryDate(value);
+                        }}
+                        required
+                    />
+
+                    <input
+                        placeholder="CVC"
                         maxLength="4"
-                        value={cardLastFour}
-                        onChange={e => setCardLastFour(e.target.value)}
+                        value={cvc}
+                        onChange={e => setCvc(e.target.value.replace(/\D/g, ""))}
                         required
                     />
                 </div>
