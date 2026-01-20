@@ -1,4 +1,4 @@
-import "./Success.css";
+import "../styles/Success.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { formatDateTime } from "../utils/date";

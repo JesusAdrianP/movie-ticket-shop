@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getMovieById, getMovieShows, getCities } from "../services/movieService";
 import { useAuth } from "../context/AuthContext";
 import { formatReadableDate } from "../utils/date";
-import "./MovieDetail.css";
+import "../styles/MovieDetail.css";
 
 export default function MovieDetail() {
     const { tokens } = useAuth()

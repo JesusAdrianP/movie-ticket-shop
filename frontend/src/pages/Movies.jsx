@@ -1,4 +1,4 @@
-import "./Movies.css";
+import "../styles/Movies.css";
 import { useEffect, useState } from "react";
 import { getMovies } from "../services/movieService";
 import MovieCard from "../components/MovieCard";

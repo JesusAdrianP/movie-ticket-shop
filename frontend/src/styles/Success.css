@@ -1,0 +1,81 @@
+.success-container {
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+/* Título principal */
+.success-title {
+    color: #2e7d32;
+    margin-bottom: 1rem;
+}
+
+/* Textos generales */
+.success-text,
+.success-order {
+    font-size: 1rem;
+    margin: 0.4rem 0;
+    color: #333;
+}
+
+.success-order {
+    font-size: 1.1rem;
+}
+
+/* Secciones */
+.success-container h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.success-container h4 {
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+/* Lista de asientos */
+.success-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.success-container li {
+    display: inline-block;
+    margin: 0.25rem;
+    padding: 0.4rem 0.7rem;
+    background-color: #f0f0f0;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* Botón */
+.btn {
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.4rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #1976d2;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #125ea5;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .success-container {
+        margin: 1.5rem;
+        padding: 1.5rem;
+    }
+}

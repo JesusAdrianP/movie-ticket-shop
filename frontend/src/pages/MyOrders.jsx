@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getMyOrders } from "../services/orderService";
 import { formatDateTime } from "../utils/date";
+import "../styles/MyOrders.css";
 
 export default function MyOrders() {
     const [orders, setOrders] = useState([]);
@@ -12,27 +13,31 @@ export default function MyOrders() {
           .finally(() => setLoading(false));
     },[]);
 
-    if (loading) return <p>Cargando compras...</p>;
+    if (loading) return <p className="orders-loading">Cargando compras...</p>;
 
     if (orders.length === 0) {
-        return <p>No tienes compras realizadas.</p>;
+        return <p className="orders-empty">No tienes compras realizadas.</p>;
     }
 
     return (
-        <div>
-            <h1>Mis compras</h1>
+        <div className="orders-container">
+            <h1 className="orders-title">Mis compras</h1>
 
             {orders.map(order => (
-                <div key={order.id} style={{ border: "1px solid #ccc", padding: 16, marginBottom: 16}}>
-                    <h3>Orden #{order.id}</h3>
+                <div key={order.id} className="order-card">
+                    <div className="order-header">
+                        <h3>Orden #{order.id}</h3>
+                        <span className={`order-status ${order.status.toLowerCase()}`}>
+                            {order.status}
+                        </span>
+                    </div>
                     <p>Fecha: {formatDateTime(order.created_at)}</p>
+                    <p>Película: {order.movie_name}</p>
                     <p>Precio unitario: ${order.ticket_unit_price}</p>
                     <p>Total: ${order.total_amount}</p>
-                    <p>Estado: {order.status}</p>
-                    <p>Película: {order.movie_name}</p>
 
                     <h4>Asientos</h4>
-                    <ul>
+                    <ul className="seat-list">
                         {order.seats.map((seat, index) => (
                             <li key={index}>
                                 {seat}

@@ -4,7 +4,7 @@ import { createOrder } from "../services/orderService";
 import { getMovieShowById } from "../services/movieService";
 import SeatGrid from "../components/SeatGrid";
 import { useAuth } from "../context/AuthContext";
-import "./Buy.css";
+import "../styles/Buy.css";
 
 export default function Buy() {
     const { movieShowId } = useParams();

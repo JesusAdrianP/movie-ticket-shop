@@ -1,3 +1,5 @@
+import "../styles/SeatGrid.css";
+
 export default function SeatGrid({
     rows,
     seatsPerRow,
@@ -16,9 +18,11 @@ export default function SeatGrid({
     };
 
     return (
-        <div>
+        <div className="seat-grid">
+            <div className="screen">PANTALLA</div>
+
             {rows.map(row => (
-                <div key={row} style={{ display: "flex"}}>
+                <div className="seat-row" key={row}>
                     {Array.from({ length: seatsPerRow }).map((_, i) => {
                         const seat = `${row}${i + 1}`;
                         const isSelected = selectedSeats.includes(seat);
@@ -26,15 +30,9 @@ export default function SeatGrid({
 
                         return(
                             <button key={seat} type="button" disabled={isOccupied} onClick={() => toggleSeat(seat)}
-                              style={{
-                                margin:4, 
-                                width:35, 
-                                height:35, 
-                                backgroundColor: isOccupied
-                                  ? "#aaa"
-                                  :isSelected
-                                  ? "#4caf50"
-                                  :"#eee"}}>
+                              className={`seat 
+                                  ${isSelected ? "selected": ""}
+                                  ${isOccupied ? "occupied": ""}`}>
                                 {seat}
                             </button>
                         )
