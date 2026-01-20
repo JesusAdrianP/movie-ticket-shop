@@ -61,7 +61,6 @@ class Cinema(models.Model):
     """
     cinema_name = models.CharField(max_length=100, blank=False, null=False)
     address = models.CharField(max_length=200, blank=False, null=False)
-    total_seats = models.IntegerField(blank=False, null=False)
     city_id = models.ForeignKey(City, on_delete=models.CASCADE, related_name='cinemas')
     
     def __str__(self):
@@ -91,5 +90,5 @@ class MovieShow(models.Model):
     room = models.ForeignKey(CinemaRoom, on_delete=models.CASCADE, related_name='rooms', default=None)
     
     def __str__(self):
-        return f"Movie name: {self.movie_id.movie_name} - cinema name: {self.room.cinema.cinema_name}"
+        return f"Id:{self.pk} Movie name: {self.movie_id.movie_name} - cinema name: {self.room.cinema.cinema_name}"
     

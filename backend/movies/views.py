@@ -12,7 +12,7 @@ class MovieListView(generics.ListAPIView):
     GET: returns a list of all movies with their information
     Doesn't require JWT authentication
     """
-    queryset = Movie.objects.prefetch_related('genres')
+    queryset = Movie.objects.prefetch_related('genres').filter(is_active = True)
     serializer_class = MovieSerializer
     permission_classes = [permissions.AllowAny]
     filter_backends = [DjangoFilterBackend]
@@ -40,9 +40,18 @@ class ListMovieShowsView(generics.ListAPIView):
     
     def get_queryset(self):
         movie_id = self.kwargs['movie_id']
-        queryset = MovieShow.objects.filter(movie_id=movie_id).select_related('cinema_id')
+        queryset = MovieShow.objects.filter(movie_id=movie_id).select_related('room')
         
         return queryset
+
+class RetrieveMovieshowView(generics.RetrieveAPIView):
+    """
+    View lo retrieve info about a movie show
+    GET: Returns a Json with movie show info
+    """
+    queryset = MovieShow.objects.all()
+    serializer_class = MovieShowSerializer
+    permission_classes = [permissions.AllowAny]
     
 class ListCitiesView(generics.ListAPIView):
     """

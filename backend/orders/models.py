@@ -6,7 +6,6 @@ from movies.models import MovieShow
 
 # Order model
 class Order(models.Model):
-    order_date = models.DateTimeField(null=False, blank=False)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='orders', null=False)

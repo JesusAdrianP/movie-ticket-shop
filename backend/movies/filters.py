@@ -14,7 +14,7 @@ class MovieFilter(filters.FilterSet):
     movie_name = filters.CharFilter(lookup_expr='icontains')
     release_date = filters.DateFilter(lookup_expr='exact')
     rating = filters.ChoiceFilter(choices=Movie.RATING_CHOICES)
-    genre = filters.NumberFilter(field_name='classifications_movie__genre_id', label='Genre')
+    genre = filters.CharFilter(field_name='classifications_movie__genre_id__genre_name', label='Genre', lookup_expr='icontains')
     
     class Meta:
         model = Movie
@@ -32,7 +32,7 @@ class MovieShowFilter(filters.FilterSet):
     Available filters:
     - city: Exact match 
     """
-    city = filters.CharFilter(field_name='cinema_id__city_id', lookup_expr='exact')
+    city = filters.CharFilter(field_name='room__cinema__city_id', lookup_expr='exact')
     
     class Meta:
         model = MovieShow

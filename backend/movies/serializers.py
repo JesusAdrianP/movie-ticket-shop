@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import City, Cinema, Classifies, Genre, Movie, MovieShow
+from .models import City, Cinema, Classifies, Genre, Movie, MovieShow, CinemaRoom
 
 class CitySerializer(serializers.ModelSerializer):
     """
@@ -73,12 +73,28 @@ class MovieSerializer(serializers.ModelSerializer):
         movie.save()
         return movie
     
+class CinemaRoomSerializer(serializers.ModelSerializer):
+    """
+    Serializer for model Cinema room
+    """
+    cinema = CinemaSerializer(read_only = True)
+    class Meta:
+        model = CinemaRoom
+        fields = '__all__'
+        read_only_fields = ['id']
+    
 class MovieShowSerializer(serializers.ModelSerializer):
     """
     Serializer for movieshow model
     """
-    cinema_id = CinemaSerializer(read_only=True)
+    occupied_seats = serializers.SerializerMethodField()
+    room = CinemaRoomSerializer(read_only=True)
     class Meta:
         model = MovieShow
         fields = '__all__'
         read_only_fields = ['id']
+        
+    def get_occupied_seats(self, obj):
+        return list(
+            obj.tickets.values_list("seat_number", flat=True)
+        )
