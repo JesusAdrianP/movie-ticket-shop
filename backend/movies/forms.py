@@ -2,6 +2,9 @@ from django import forms
 from .models import CinemaRoom
 
 class CinemaRoomForm(forms.ModelForm):
+    """
+    Customized form to add rows of cinema more simply
+    """
     rows_str = forms.CharField(
         label='Filas (separadas por comas)',
         help_text='EJ: A,B,C',

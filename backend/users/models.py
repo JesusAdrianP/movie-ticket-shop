@@ -7,6 +7,10 @@ from django.contrib.auth.password_validation import validate_password
 
 #class CustomUserManager
 class CustomUserManager(BaseUserManager):
+    """
+    Model to create managers users for admin panel
+    Only requires email and password
+    """
     
     def create_user(self, email, password, **extra_fields):
         # create and save new user with given email and passoword
@@ -28,6 +32,11 @@ class CustomUserManager(BaseUserManager):
 
 #class CustomUser
 class CustomUser(AbstractUser, PermissionsMixin):
+    
+    """
+    Model to create a custom normal user
+    requires first_name, last_name, number_phone, email and password
+    """
     
     first_name = models.CharField(max_length=50, blank=False, null=False)
     last_name = models.CharField(max_length=50, blank=False, null=False)
